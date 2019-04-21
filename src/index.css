@@ -58,6 +58,7 @@ button, input:focus {
 .header {
     background-color: #f6f8fa;
     border-bottom: 1px solid #d1d5da;
+    font-size: 14px;
 }
 .card {
     display: flex;
@@ -102,6 +103,14 @@ button, input:focus {
     background: inherit;
     margin: 5px;
     border-radius: 50%;
+}
+.headerIcon {
+    height: 20px;
+    width: 20px;
+    border: none;
+    background: inherit;
+    margin: 5px;
+    vertical-align: middle;
 }
 .openIcon {
     fill: green;

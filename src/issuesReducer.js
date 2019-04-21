@@ -1,4 +1,4 @@
-import {SET_ISSUES, SET_ISSUES_COUNT, SET_OWNER, SET_REPO, SET_PAGE} from './issuesAction';
+import {SET_ISSUES, SET_ISSUES_COUNT, SET_OWNER, SET_REPO, SET_PAGE, SET_PAGE_COUNT} from './issuesAction';
 
 const initialState = {
     issues: [],
@@ -9,7 +9,9 @@ const initialState = {
     owner: 'zalmoxisus',
     repo: 'redux-devtools-extension',
     iss: 'issues',
-    page: '1'
+    page: 1,
+    page_count: [],
+    limit: 30
 };
 
 export function issuesReducer(state = initialState, action) {
@@ -38,6 +40,11 @@ export function issuesReducer(state = initialState, action) {
             return {
                 ...state,
                 page: action.payload
+            };
+        case SET_PAGE_COUNT:
+            return {
+                ...state,
+                page_count: action.payload
             };
         default:
             return state;
