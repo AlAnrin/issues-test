@@ -20,16 +20,35 @@ a:hover {
     fill: dodgerblue;
     color: dodgerblue;
 }
-.App {
+input {
+    background-color: #fff;
+    border: 1px solid #d1d5da;
+    border-radius: 5px;
 }
-
-.App-header {
+button, input:focus {
+    outline: 0;
+}
+.App {
     background-color: white;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: #292929;
+}
+.changeOwnerRepo {
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+.box {
+    background-color: #fff;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+}
+.header {
+    background-color: #f6f8fa;
+    border: 1px solid #d1d5da;
 }
 .card {
     display: flex;
@@ -44,6 +63,10 @@ a:hover {
 }
 .row {
     display: flex;
+    flex-direction: row;
+}
+.column {
+    display: flex;
     flex-direction: column;
 }
 .secondRow {
@@ -57,8 +80,6 @@ a:hover {
 }
 .commentDiv {
     display: inline;
-    position: absolute;
-    left: 95%;
 }
 .commentIcon {
     vertical-align: top;

@@ -12,7 +12,7 @@ class IssueCard extends Component {
                     <Icon className="issueIcon openIcon" title="open issue" path={mdiInformationOutline}/> :
                     <Icon className="issueIcon closeIcon" path={mdiPaw}/>
                 }
-                <div className="row">
+                <div className="column">
                     <a href={issue.html_url}><b>{issue.title}</b></a>
                     <span className="secondRow">
                         #{issue.number} opened at
@@ -20,7 +20,7 @@ class IssueCard extends Component {
                         <a href={issue.user.html_url}> {issue.user.login}</a>
                     </span>
                 </div>
-                {/*<div className="spacer"/>*/}
+                <div className="spacer"/>
                 {
                     issue.comments > 0 &&
                     <a className="commentDiv" href={issue.html_url}>
