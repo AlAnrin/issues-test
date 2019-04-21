@@ -4,28 +4,34 @@ import { mdiInformationOutline, mdiPaw, mdiCommentOutline } from '@mdi/js';
 import * as moment from 'moment';
 
 class IssueCard extends Component {
+    issue = {};
+
+    constructor(props) {
+        super(props);
+
+        this.issue = this.props.issue != null ? this.props.issue : {};
+    }
     render() {
-        let issue = this.props.issue;
         return (
             <div className="card">
-                {issue.state === 'open' ?
+                {this.issue.state === 'open' ?
                     <Icon className="issueIcon openIcon" title="open issue" path={mdiInformationOutline}/> :
                     <Icon className="issueIcon closeIcon" path={mdiPaw}/>
                 }
                 <div className="column">
-                    <a href={issue.html_url}><b>{issue.title}</b></a>
+                    <a href={this.issue.html_url}><b>{this.issue.title}</b></a>
                     <span className="secondRow">
-                        #{issue.number} opened at
-                        <span title={moment(issue.updated_at).format('LLL')}> {moment(issue.updated_at).fromNow()} by</span>
-                        <a href={issue.user.html_url}> {issue.user.login}</a>
+                        #{this.issue.html_url} opened at
+                        <span title={moment(this.issue.updated_at).format('LLL')}> {moment(this.issue.updated_at).fromNow()} by</span>
+                        <a href={this.issue.user.html_url}> {this.issue.user.login}</a>
                     </span>
                 </div>
                 <div className="spacer"/>
                 {
-                    issue.comments > 0 &&
-                    <a className="commentDiv" href={issue.html_url}>
+                    this.issue.comments > 0 &&
+                    <a className="commentDiv" href={this.issue.html_url}>
                         <Icon className="issueIcon commentIcon" path={mdiCommentOutline}/>
-                        <span className="commentIcon">{issue.comments}</span>
+                        <span className="commentIcon">{this.issue.comments}</span>
                     </a>
                 }
             </div>
