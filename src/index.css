@@ -1,28 +1,81 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+a {
+    text-decoration: none;
+    color: inherit;
+}
+a:hover {
+    fill: dodgerblue;
+    color: dodgerblue;
+}
 .App {
-  text-align: center;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: calc(10px + 2vmin);
+    color: #292929;
+}
+.card {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #e1e4e8;
+    font-size: 14px;
+    padding: 5px;
+    line-height: 1.25;
+}
+.card:hover {
+    background: #eff2f6;
+}
+.row {
+    display: flex;
+    flex-direction: column;
+}
+.secondRow {
+    color: #586069;
+    font-size: 12px
+}
+.spacer {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+.commentDiv {
+    display: inline;
+    position: absolute;
+    left: 95%;
+}
+.commentIcon {
+    vertical-align: top;
+    margin-top: 0 !important;
+    margin-right: 2px !important;
+}
+.issueIcon {
+    height: 20px;
+    width: 20px;
+    border: none;
+    background: inherit;
+    margin: 5px;
+    border-radius: 50%;
+}
+.openIcon {
+    fill: green;
+}
+.closeIcon {
+    fill: red
 }

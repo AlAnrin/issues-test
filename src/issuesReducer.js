@@ -1,15 +1,22 @@
-import {SET_ISSUES} from './issuesActions';
+import {SET_ISSUES} from './issuesAction';
 
 const initialState = {
-    issues: []
+    issues: [],
+    baseUrl: 'https://api.github.com/',
+    repos: 'repos/',
+    owner: 'zalmoxisus/',
+    repo: 'redux-devtools-extension/',
+    iss: 'issues'
 };
 
-export function weatherReducer(state = initialState, action) {
+export function issuesReducer(state = initialState, action) {
     switch (action.type) {
         case SET_ISSUES:
             return {
                 ...state,
                 issues: action.payload
-            }
+            };
+        default:
+            return state;
         }
 }

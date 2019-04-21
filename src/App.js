@@ -1,39 +1,50 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
+import {setIssuesAction} from "./issuesAction";
+import IssueCard from "./issueCard";
 
 const mapStateToProps = store => {
-  return {
-    issues: []
-  };
+    return {
+        issues: store.issues,
+        baseUrl: store.baseUrl,
+        repos: store.repos,
+        owner: store.owner,
+        repo: store.repo,
+        iss: store.iss
+    };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-      setIssuesAction: weather => dispatch(setWeather(weather))
-  }
+    return {
+        setIssues: issues => dispatch(setIssuesAction(issues))
+    }
 };
 class App extends Component {
-  constructor(props) {
-      super(props);
+    getIssues = async () => {
+        const api_call = await fetch(`${this.props.baseUrl}${this.props.repos}${this.props.owner}${this.props.repo}${this.props.iss}`);
 
-      this.getIssues();
-  }
+        const response = await api_call.json();
 
-  getIssues = async () => {
-    const api_call = await fetch(`${this.props.baseUrl}?id=${this.props.idCity}&units=metric&appid=${this.props.token}`);
+        this.props.setIssues(response);
+    };
 
-    const response = await api_call.json();
+    componentDidMount() {
+        this.getIssues();
+    }
 
-    this.props.setIssuesAction(response);
-};
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-        </header>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    {
+                        this.props.issues.map(issue =>
+                            <IssueCard key={issue.id} issue={issue}/>
+                        )
+                    }
+                </header>
+            </div>
+        );
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

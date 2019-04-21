@@ -3,10 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mdi/js": "^3.6.95",
+    "@mdi/react": "^1.1.0",
+    "dateformat": "^3.0.3",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "react-time-ago": "^5.0.3",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
