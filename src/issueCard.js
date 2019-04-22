@@ -19,9 +19,9 @@ class IssueCard extends Component {
                     <Icon className="issueIcon closeIcon" path={mdiPaw}/>
                 }
                 <div className="column">
-                    <a href={this.issue.html_url}><b>{this.issue.title}</b></a>
+                    <a href={this.issue.html_url}><span><b>{this.issue.title}</b></span></a>
                     <span className="secondRow">
-                        #{this.issue.html_url} opened at
+                        #{this.issue.number} opened at
                         <span title={moment(this.issue.updated_at).format('LLL')}> {moment(this.issue.updated_at).fromNow()} by</span>
                         <a href={this.issue.user.html_url}> {this.issue.user.login}</a>
                     </span>

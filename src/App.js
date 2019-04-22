@@ -87,55 +87,57 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <div className="changeOwnerRepo row">
-                    <TextField
-                        label="Owner"
-                        value={this.props.owner}
-                        onChange={(e) => this.handleChange(e, 'owner')}
-                        margin="dense"
-                    />
-                    <TextField
-                        label="Repo"
-                        value={this.props.repo}
-                        onChange={(e) => this.handleChange(e, 'repo')}
-                        margin="dense"
-                    />
-                    <Button variant="contained" color="primary" onClick={this.changeIssues}>
-                        change
-                    </Button>
-                </div>
-                <div className="box">
-                    <div className="header">
-                        <Icon className="headerIcon" path={mdiInformationOutline}/>
-                        <span>{this.props.issues_count} Open</span>
+                <div className="container">
+                    <div className="changeOwnerRepo row">
+                        <TextField
+                            label="Owner"
+                            value={this.props.owner}
+                            onChange={(e) => this.handleChange(e, 'owner')}
+                            margin="dense"
+                        />
+                        <TextField
+                            label="Repo"
+                            value={this.props.repo}
+                            onChange={(e) => this.handleChange(e, 'repo')}
+                            margin="dense"
+                        />
+                        <Button variant="contained" color="primary" onClick={this.changeIssues}>
+                            change
+                        </Button>
                     </div>
-                    {
-                        this.props.issues.map(issue =>
-                            <IssueCard key={issue.id} issue={issue}/>
-                        )
-                    }
-                </div>
-                <div className="box row">
-                    {
-                        this.props.page_count.length !== 0 &&
-                        this.props.page_count.map(butt =>
-                            <div key={butt}>
-                                {
-                                    butt === this.props.page?
-                                        <Button className="selectButton"
-                                                key={butt} variant="contained" color="primary">
-                                            {butt}
-                                        </Button>
-                                        :
-                                        <Button className="pageButton"
-                                                key={butt} variant="contained" color="primary"
-                                                onClick={() => this.changePage(butt)}>
-                                            {butt}
-                                        </Button>
-                                }
-                            </div>
-                        )
-                    }
+                    <div className="box">
+                        <div className="header">
+                            <Icon className="headerIcon" path={mdiInformationOutline}/>
+                            <span>{this.props.issues_count} Open</span>
+                        </div>
+                        {
+                            this.props.issues.map(issue =>
+                                <IssueCard key={issue.id} issue={issue}/>
+                            )
+                        }
+                    </div>
+                    <div className="row pageButtonsRow">
+                        {
+                            this.props.page_count.length !== 0 &&
+                            this.props.page_count.map(butt =>
+                                <div key={butt}>
+                                    {
+                                        butt === this.props.page?
+                                            <Button className="selectButton"
+                                                    key={butt} variant="contained">
+                                                {butt}
+                                            </Button>
+                                            :
+                                            <Button className="pageButton"
+                                                    key={butt} variant="contained"
+                                                    onClick={() => this.changePage(butt)}>
+                                                {butt}
+                                            </Button>
+                                    }
+                                </div>
+                            )
+                        }
+                    </div>
                 </div>
             </div>
         );
