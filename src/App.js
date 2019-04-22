@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 import {
-    SET_PAGE, SET_REPO, SET_OWNER, SET_ISSUES_COUNT, SET_ISSUES, setAction, SET_PAGE_COUNT
+    SET_PAGE, SET_REPO, SET_OWNER, SET_ISSUES_COUNT, SET_ISSUES, setAction, SET_PAGE_COUNT, SET_CURRENT_ISSUE
 } from "./issuesAction";
-import IssueCard from "./issueCard";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import IssueCard from "./components/issueCard";
 import { mdiInformationOutline} from '@mdi/js';
 import { Icon } from '@mdi/react';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import { withRouter } from "react-router";
+import IssueDetail from "./components/IssueDetail";
+import ChangeRepoOrOwner from "./components/changeRepoOrOwner";
+import PageButtonsRow from "./components/pageButtonsRow";
 
 const mapStateToProps = store => {
     return {
@@ -20,7 +23,8 @@ const mapStateToProps = store => {
         owner: store.owner,
         repo: store.repo,
         iss: store.iss,
-        limit: store.limit
+        limit: store.limit,
+        current_issue: store.current_issue
     };
 };
 
@@ -31,7 +35,8 @@ const mapDispatchToProps = dispatch => {
         setOwner: owner => dispatch(setAction(SET_OWNER, owner)),
         setRepo: repo => dispatch(setAction(SET_REPO, repo)),
         setPage: page => dispatch(setAction(SET_PAGE, page)),
-        setPageCount: page_count => dispatch(setAction(SET_PAGE_COUNT, page_count))
+        setPageCount: page_count => dispatch(setAction(SET_PAGE_COUNT, page_count)),
+        setCurrentIssueAction: curr_issue => dispatch(setAction(SET_CURRENT_ISSUE, curr_issue))
     }
 };
 class App extends Component {
@@ -88,23 +93,7 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="container">
-                    <div className="changeOwnerRepo row">
-                        <TextField
-                            label="Owner"
-                            value={this.props.owner}
-                            onChange={(e) => this.handleChange(e, 'owner')}
-                            margin="dense"
-                        />
-                        <TextField
-                            label="Repo"
-                            value={this.props.repo}
-                            onChange={(e) => this.handleChange(e, 'repo')}
-                            margin="dense"
-                        />
-                        <Button variant="contained" color="primary" onClick={this.changeIssues}>
-                            change
-                        </Button>
-                    </div>
+                    <ChangeRepoOrOwner owner={this.props.owner} repo={this.props.repo} changeIssues={this.changeIssues} handleChange={this.handleChange}/>
                     <div className="box">
                         <div className="header">
                             <Icon className="headerIcon" path={mdiInformationOutline}/>
@@ -116,28 +105,7 @@ class App extends Component {
                             )
                         }
                     </div>
-                    <div className="row pageButtonsRow">
-                        {
-                            this.props.page_count.length !== 0 &&
-                            this.props.page_count.map(butt =>
-                                <div key={butt}>
-                                    {
-                                        butt === this.props.page?
-                                            <Button className="selectButton"
-                                                    key={butt} variant="contained">
-                                                {butt}
-                                            </Button>
-                                            :
-                                            <Button className="pageButton"
-                                                    key={butt} variant="contained"
-                                                    onClick={() => this.changePage(butt)}>
-                                                {butt}
-                                            </Button>
-                                    }
-                                </div>
-                            )
-                        }
-                    </div>
+                    <PageButtonsRow page_count={this.props.page_count} page={this.props.page} changePage={this.changePage}/>
                 </div>
             </div>
         );

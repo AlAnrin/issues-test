@@ -1,4 +1,4 @@
-import {SET_ISSUES, SET_ISSUES_COUNT, SET_OWNER, SET_REPO, SET_PAGE, SET_PAGE_COUNT} from './issuesAction';
+import {SET_ISSUES, SET_ISSUES_COUNT, SET_OWNER, SET_REPO, SET_PAGE, SET_PAGE_COUNT, SET_CURRENT_ISSUE} from './issuesAction';
 
 const initialState = {
     issues: [],
@@ -11,7 +11,8 @@ const initialState = {
     iss: 'issues',
     page: 1,
     page_count: [],
-    limit: 30
+    limit: 30,
+    current_issue: {}
 };
 
 export function issuesReducer(state = initialState, action) {
@@ -45,6 +46,11 @@ export function issuesReducer(state = initialState, action) {
             return {
                 ...state,
                 page_count: action.payload
+            };
+        case SET_CURRENT_ISSUE:
+            return {
+                ...state,
+                current_issue: action.payload
             };
         default:
             return state;

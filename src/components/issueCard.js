@@ -9,7 +9,7 @@ class IssueCard extends Component {
     constructor(props) {
         super(props);
 
-        this.issue = this.props.issue != null ? this.props.issue : {};
+        this.issue = this.props.issue !== null ? this.props.issue : {};
     }
     render() {
         return (
@@ -19,7 +19,7 @@ class IssueCard extends Component {
                     <Icon className="issueIcon closeIcon" path={mdiPaw}/>
                 }
                 <div className="column">
-                    <a href={this.issue.html_url}><span><b>{this.issue.title}</b></span></a>
+                    <a href={this.issue.html_url}><b>{this.issue.title}</b></a>
                     <span className="secondRow">
                         #{this.issue.number} opened at
                         <span title={moment(this.issue.updated_at).format('LLL')}> {moment(this.issue.updated_at).fromNow()} by</span>
