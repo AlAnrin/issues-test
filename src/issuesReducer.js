@@ -1,8 +1,9 @@
-import {SET_ISSUES, SET_ISSUES_COUNT, SET_OWNER, SET_REPO, SET_PAGE, SET_PAGE_COUNT, SET_CURRENT_ISSUE} from './issuesAction';
+import {SET_ISSUES, SET_ISSUES_COUNT, SET_OWNER, SET_REPO, SET_PAGE, SET_PAGE_COUNT, SET_CURRENT_ISSUE, SET_LOAD_REPO} from './issuesAction';
 
 const initialState = {
     issues: [],
     issues_count: 0,
+    load_repo: null,
     baseUrl: 'https://api.github.com/',
     repos: 'repos/',
     users: 'users/',
@@ -26,6 +27,11 @@ export function issuesReducer(state = initialState, action) {
             return {
                 ...state,
                 issues_count: action.payload
+            };
+        case SET_LOAD_REPO:
+            return {
+                ...state,
+                load_repo: action.payload
             };
         case SET_OWNER:
             return {

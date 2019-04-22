@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 class ChangeRepoOrOwner extends Component {
     render() {
         return (
-            <div className="changeOwnerRepo row">
+            <div className="changeOwnerRepo column">
                 <TextField
                     label="Owner"
                     value={this.props.owner}
@@ -19,7 +19,7 @@ class ChangeRepoOrOwner extends Component {
                     margin="dense"
                 />
                 <Button variant="contained" color="primary" onClick={this.props.changeIssues}>
-                    change
+                    load issues
                 </Button>
             </div>
         )

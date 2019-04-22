@@ -29,10 +29,21 @@ input {
 button, input:focus {
     outline: 0;
 }
+.menuLinks {
+    width: 210px;
+    margin: 5px;
+}
+.menuLink {
+    width: 100%;
+    font-size: 16px;
+    margin: 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d1d5da;
+}
 .container {
     margin-left: auto;
     margin-right: auto;
-    width: 980px;
+    width: 990px;
 }
 .pageButton {
     border-radius: 0 !important;
@@ -60,11 +71,15 @@ button, input:focus {
     align-items: center;
     justify-content: flex-start;
     font-size: calc(10px + 2vmin);
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
 }
 .changeOwnerRepo {
     margin-bottom: 10px;
     justify-content: center;
     line-height: 1.1;
+    height: fit-content !important;
 }
 .box {
     background-color: #fff;

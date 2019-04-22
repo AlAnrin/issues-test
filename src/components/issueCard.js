@@ -5,11 +5,13 @@ import * as moment from 'moment';
 
 class IssueCard extends Component {
     issue = {};
+    link = '';
 
     constructor(props) {
         super(props);
 
         this.issue = this.props.issue !== null ? this.props.issue : {};
+        this.link = this.props.linkTo;
     }
     render() {
         return (

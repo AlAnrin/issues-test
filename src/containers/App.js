@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 import {
-    SET_PAGE, SET_REPO, SET_OWNER, SET_ISSUES_COUNT, SET_ISSUES, setAction, SET_PAGE_COUNT, SET_CURRENT_ISSUE
-} from "./issuesAction";
-import IssueCard from "./components/issueCard";
-import { mdiInformationOutline} from '@mdi/js';
-import { Icon } from '@mdi/react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
-import { withRouter } from "react-router";
-import IssueDetail from "./components/IssueDetail";
-import ChangeRepoOrOwner from "./components/changeRepoOrOwner";
-import PageButtonsRow from "./components/pageButtonsRow";
+    SET_PAGE, SET_REPO, SET_OWNER, SET_ISSUES_COUNT, SET_ISSUES, setAction, SET_PAGE_COUNT, SET_CURRENT_ISSUE,
+    SET_LOAD_REPO
+} from "../issuesAction";
+import ChangeRepoOrOwner from "../components/changeRepoOrOwner";
 
 const mapStateToProps = store => {
     return {
         issues: store.issues,
         issues_count: store.issues_count,
+        load_repo: store.load_repo,
         page: store.page,
         page_count: store.page_count,
         baseUrl: store.baseUrl,
@@ -36,6 +31,7 @@ const mapDispatchToProps = dispatch => {
         setRepo: repo => dispatch(setAction(SET_REPO, repo)),
         setPage: page => dispatch(setAction(SET_PAGE, page)),
         setPageCount: page_count => dispatch(setAction(SET_PAGE_COUNT, page_count)),
+        setLoadRepo : repo => dispatch(setAction(SET_LOAD_REPO, repo)),
         setCurrentIssueAction: curr_issue => dispatch(setAction(SET_CURRENT_ISSUE, curr_issue))
     }
 };
@@ -49,6 +45,7 @@ class App extends Component {
     getIssuesCount = async () => {
         const api_call = await fetch(`${this.props.baseUrl}${this.props.repos}${this.props.owner}/${this.props.repo}`);
         const response = await api_call.json();
+        this.props.setLoadRepo(response);
         this.props.setIssuesCount(response.open_issues_count)
             .then(() => {
                 let count = Math.ceil(this.props.issues_count/this.props.limit);
@@ -60,10 +57,6 @@ class App extends Component {
                 this.props.setPageCount(page_c.reverse());
             });
     };
-
-    componentDidMount() {
-        this.changeIssues();
-    }
 
     changeIssues = () => {
         this.changePage(1);
@@ -91,23 +84,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <div className="container">
-                    <ChangeRepoOrOwner owner={this.props.owner} repo={this.props.repo} changeIssues={this.changeIssues} handleChange={this.handleChange}/>
-                    <div className="box">
-                        <div className="header">
-                            <Icon className="headerIcon" path={mdiInformationOutline}/>
-                            <span>{this.props.issues_count} Open</span>
-                        </div>
-                        {
-                            this.props.issues.map(issue =>
-                                <IssueCard key={issue.id} issue={issue}/>
-                            )
-                        }
-                    </div>
-                    <PageButtonsRow page_count={this.props.page_count} page={this.props.page} changePage={this.changePage}/>
-                </div>
-            </div>
+            <ChangeRepoOrOwner owner={this.props.owner} repo={this.props.repo} changeIssues={this.changeIssues} handleChange={this.handleChange}/>
         );
     }
 }
