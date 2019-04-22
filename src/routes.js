@@ -1,4 +1,4 @@
-import {Switch, Link } from "react-router-dom";
+import { Switch, Link, Route, Redirect } from "react-router-dom";
 import React from 'react';
 import {MakeRouteWithSubRoutes} from "./makeRouteWithSubRoutes";
 import IssuesList from './containers/issuesList';
@@ -50,6 +50,7 @@ export const Routes = (props) => {
                                 (route, index) => <MakeRouteWithSubRoutes key={index} {...route}/>
                             )
                         }
+                        <Route><Redirect to='/home'/></Route>
                     </Switch>
                 </CardContent>
             </Card>

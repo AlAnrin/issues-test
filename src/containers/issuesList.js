@@ -51,8 +51,8 @@ class IssuesList extends Component {
                     </div>
                     {
                         this.props.issues.map(issue =>
-                            <IssueCard key={issue.number} issue={issue}
-                                       linkTo={`${this.props.match.url}/${issue.number}`}/>
+                            <IssueCard issue={issue} key={issue.number}
+                                       match={this.props.match.url}/>
                         )
                     }
                 </div>

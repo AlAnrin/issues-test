@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import { Icon } from '@mdi/react';
 import { mdiInformationOutline, mdiPaw, mdiCommentOutline } from '@mdi/js';
 import * as moment from 'moment';
+import {Link} from "react-router-dom";
 
 class IssueCard extends Component {
     issue = {};
-    link = '';
 
     constructor(props) {
         super(props);
 
         this.issue = this.props.issue !== null ? this.props.issue : {};
-        this.link = this.props.linkTo;
     }
     render() {
         return (
@@ -21,7 +20,7 @@ class IssueCard extends Component {
                     <Icon className="issueIcon closeIcon" path={mdiPaw}/>
                 }
                 <div className="column">
-                    <a href={this.issue.html_url}><b>{this.issue.title}</b></a>
+                    <Link to={`${this.props.match}/${this.issue.number}`}><b>{this.issue.title}</b></Link>
                     <span className="secondRow">
                         #{this.issue.number} opened at
                         <span title={moment(this.issue.updated_at).format('LLL')}> {moment(this.issue.updated_at).fromNow()} by</span>
