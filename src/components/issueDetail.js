@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 // import { Icon } from '@mdi/react';
 // import { mdiInformationOutline, mdiPaw, mdiCommentOutline } from '@mdi/js';
 import * as moment from 'moment';
+import {Link} from "react-router-dom";
 
 class IssueDetail extends Component {
     render() {
         let issue = this.props.issue;
+        let body = ``;
+        body = this.props.issue.body.replace(/`(.*)`/g, (str) => {
+            return `<code>${str.substring(1, str.length - 1)}</code>`;
+        });
+        body = body.replace(/!\[image]\((.*)\)/g, (str) => {
+            return ``;
+        });
         return (
             <div className="column">
                 <span className="grayColor"><b>{issue.title}</b> #{issue.number}</span>
@@ -20,8 +28,8 @@ class IssueDetail extends Component {
                         commented on
                         <span title={moment(issue.updated_at).format('LLL')}> {moment(issue.updated_at).fromNow()}</span>
                     </div>
-                    <p dangerouslySetInnerHTML={{__html: issue.body}} />
-                    {/*<div className="issueDetailBody">{issue.body}</div>*/}
+                    <p dangerouslySetInnerHTML={{__html: body}} />
+                    {/*<div className="issueDetailBody">{body}</div>*/}
                 </div>
             </div>
         )

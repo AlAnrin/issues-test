@@ -51,7 +51,6 @@ class IssuesList extends Component {
     };
 
     render() {
-        console.log(this.props);
         return (
             <div>
                 {
@@ -74,7 +73,7 @@ class IssuesList extends Component {
                         </div>
                         :
                         <Route path={`${this.props.match.path}/:id`}
-                               render={() => <IssueDetail issue={this.props.current_issue}/>}/>
+                               render={() => <IssueDetail issue={this.props.current_issue} match={this.props.match.url}/>}/>
                 }
             </div>
         );
