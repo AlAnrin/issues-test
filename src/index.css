@@ -41,9 +41,10 @@ button, input:focus {
     border-bottom: 1px solid #d1d5da;
 }
 .container {
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
     width: 990px;
+    margin: 5px;
 }
 .pageButton {
     border-radius: 0 !important;
@@ -91,6 +92,10 @@ button, input:focus {
     border-bottom: 1px solid #d1d5da;
     font-size: 14px;
 }
+.commentHeader {
+    border-radius: 5px;
+    padding: 10px;
+}
 .card {
     display: flex;
     flex-direction: row;
@@ -112,6 +117,9 @@ button, input:focus {
 .column {
     display: flex;
     flex-direction: column;
+}
+.grayColor {
+    color: #586069;
 }
 .secondRow {
     color: #586069;
@@ -151,4 +159,7 @@ button, input:focus {
 }
 .closeIcon {
     fill: red
+}
+.issueDetailBody {
+    padding: 5px;
 }

@@ -20,7 +20,9 @@ class IssueCard extends Component {
                     <Icon className="issueIcon closeIcon" path={mdiPaw}/>
                 }
                 <div className="column">
-                    <Link to={`${this.props.match}/${this.issue.number}`}><b>{this.issue.title}</b></Link>
+                    <Link to={`${this.props.match}/${this.issue.number}`} onClick={() => this.props.changeCurrentIssue(this.issue)}>
+                        <b>{this.issue.title}</b>
+                    </Link>
                     <span className="secondRow">
                         #{this.issue.number} opened at
                         <span title={moment(this.issue.updated_at).format('LLL')}> {moment(this.issue.updated_at).fromNow()} by</span>

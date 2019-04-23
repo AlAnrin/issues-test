@@ -1,4 +1,4 @@
-import {SET_ISSUES, SET_ISSUES_COUNT, SET_OWNER, SET_REPO, SET_PAGE, SET_PAGE_COUNT, SET_CURRENT_ISSUE, SET_LOAD_REPO} from './issuesAction';
+import {SET_ISSUES, SET_ISSUES_COUNT, SET_OWNER_NAME, SET_REPO_NAME, SET_PAGE_NUMBER, SET_PAGE_COUNT, SET_CURRENT_ISSUE, SET_LOAD_REPO} from './Actions';
 
 const initialState = {
     issues: [],
@@ -13,7 +13,7 @@ const initialState = {
     page: 1,
     page_count: [],
     limit: 30,
-    current_issue: {}
+    current_issue: {title: 'FAKE'}
 };
 
 export function issuesReducer(state = initialState, action) {
@@ -33,17 +33,17 @@ export function issuesReducer(state = initialState, action) {
                 ...state,
                 load_repo: action.payload
             };
-        case SET_OWNER:
+        case SET_OWNER_NAME:
             return {
                 ...state,
                 owner: action.payload
             };
-        case SET_REPO:
+        case SET_REPO_NAME:
             return {
                 ...state,
                 repo: action.payload
             };
-        case SET_PAGE:
+        case SET_PAGE_NUMBER:
             return {
                 ...state,
                 page: action.payload

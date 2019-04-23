@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Routes } from "./routes";
+import Routes from "./containers/routes";
 import  { BrowserRouter }  from "react-router-dom";
 
 class Home extends Component {
